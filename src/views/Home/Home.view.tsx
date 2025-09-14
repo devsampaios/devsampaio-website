@@ -1,37 +1,23 @@
 import { Separator } from '@moreirapontocom/npmhelpers';
 import ImagemMateus from '../../assets/home/imagemMateus.jpeg';
-import LogoBootstrap from '../../assets/home/bootstrap.png';
-import LogoC from '../../assets/home/C.png';
-import LogoCss3 from '../../assets/home/css-3.png';
-import LogoGit from '../../assets/home/Git.png';
-import LogoHtml5 from '../../assets/home/html-5.png';
-import LogoJs from '../../assets/home/js.png';
-import LogoNodeJs from '../../assets/home/Node.js.png';
-import LogoPHP from '../../assets/home/PHP.png';
-import LogoPython from '../../assets/home/Python.png';
-import LogoReactBootstrap from '../../assets/home/React Bootstrap.png';
-import LogoReact from '../../assets/home/React.png';
-import LogoTailwindCSS from '../../assets/home/Tailwind CSS.png';
-import LogoTypeScript from '../../assets/home/TypeScript.png';
-import LogoNPM from '../../assets/home/NPM.png';
 
 
 const HomeView = () => {
   const skills = [
-    { logo: LogoCss3, name: "CSS3" },
-    { logo: LogoHtml5, name: "HTML5" },
-    { logo: LogoJs, name: "JavaScript" },
-    { logo: LogoTypeScript, name: "TypeScript" },
-    { logo: LogoNPM, name: "NPM" },
-    { logo: LogoNodeJs, name: "Node.js" },
-    { logo: LogoReact, name: "React" },
-    { logo: LogoReactBootstrap, name: "React Bootstrap" },
-    { logo: LogoBootstrap, name: "Bootstrap" },
-    { logo: LogoTailwindCSS, name: "Tailwind CSS" },
-    { logo: LogoGit, name: "Git" },
-    { logo: LogoC, name: "C" },
-    { logo: LogoPHP, name: "PHP" },
-    { logo: LogoPython, name: "Python" }
+    { logo: "/assets/home/css-3.png", name: "CSS3" },
+    { logo: "/assets/home/html-5.png", name: "HTML5" },
+    { logo: "/assets/home/js.png", name: "JavaScript" },
+    { logo: "/assets/home/TypeScript.png", name: "TypeScript" },
+    { logo: "/assets/home/NPM.png", name: "NPM" },
+    { logo: "/assets/home/Node.js.png", name: "Node.js" },
+    { logo: "/assets/home/React.png", name: "React" },
+    { logo: "/assets/home/React Bootstrap.png", name: "React Bootstrap" },
+    { logo: "/assets/home/bootstrap.png", name: "Bootstrap" },
+    { logo: "/assets/home/Tailwind CSS.png", name: "Tailwind CSS" },
+    { logo: "/assets/home/Git.png", name: "Git" },
+    { logo: "/assets/home/C.png", name: "C" },
+    { logo: "/assets/home/PHP.png", name: "PHP" },
+    { logo: "/assets/home/Python.png", name: "Python" }
   ];
 
   return (
