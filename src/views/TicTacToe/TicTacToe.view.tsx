@@ -304,27 +304,30 @@ const TicTacToeView = () => {
 
         {/* Score Board */}
         <div className="flex justify-center mb-8">
-          <div className="grid grid-cols-3 gap-4 sm:gap-6">
-            <div className="bg-blue-500/10 rounded-lg p-3 sm:p-4 border border-blue-500/30 text-center">
-              <p className="text-blue-400 font-bold text-lg sm:text-xl flex items-center gap-2 justify-center">
-                <i className="fas fa-user"></i>
-                You
+          <div className="grid grid-cols-3 gap-2 sm:gap-4 md:gap-6 w-full max-w-sm sm:max-w-md md:max-w-lg">
+            <div className="bg-blue-500/10 rounded-lg p-2 sm:p-3 md:p-4 border border-blue-500/30 text-center">
+              <p className="text-blue-400 font-bold text-xs sm:text-sm md:text-lg flex items-center gap-1 sm:gap-2 justify-center">
+                <i className="fas fa-user text-xs sm:text-sm"></i>
+                <span className="hidden sm:inline">You</span>
+                <span className="sm:hidden">You</span>
               </p>
-              <p className="text-blue-900 dark:text-white text-2xl sm:text-3xl font-bold">{scores.player}</p>
+              <p className="text-blue-900 dark:text-white text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold">{scores.player}</p>
             </div>
-            <div className="bg-yellow-500/10 rounded-lg p-3 sm:p-4 border border-yellow-500/30 text-center">
-              <p className="text-yellow-400 font-bold text-lg sm:text-xl flex items-center gap-2 justify-center">
-                <i className="fas fa-handshake"></i>
-                Draws
+            <div className="bg-yellow-500/10 rounded-lg p-2 sm:p-3 md:p-4 border border-yellow-500/30 text-center">
+              <p className="text-yellow-400 font-bold text-xs sm:text-sm md:text-lg flex items-center gap-1 sm:gap-2 justify-center">
+                <i className="fas fa-handshake text-xs sm:text-sm"></i>
+                <span className="hidden sm:inline">Draws</span>
+                <span className="sm:hidden">Draw</span>
               </p>
-              <p className="text-blue-900 dark:text-white text-2xl sm:text-3xl font-bold">{scores.draws}</p>
+              <p className="text-blue-900 dark:text-white text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold">{scores.draws}</p>
             </div>
-            <div className="bg-red-500/10 rounded-lg p-3 sm:p-4 border border-red-500/30 text-center">
-              <p className="text-red-400 font-bold text-lg sm:text-xl flex items-center gap-2 justify-center">
-                <i className="fas fa-robot"></i>
-                Computer
+            <div className="bg-red-500/10 rounded-lg p-2 sm:p-3 md:p-4 border border-red-500/30 text-center">
+              <p className="text-red-400 font-bold text-xs sm:text-sm md:text-lg flex items-center gap-1 sm:gap-2 justify-center">
+                <i className="fas fa-robot text-xs sm:text-sm"></i>
+                <span className="hidden sm:inline">Computer</span>
+                <span className="sm:hidden">CPU</span>
               </p>
-              <p className="text-blue-900 dark:text-white text-2xl sm:text-3xl font-bold">{scores.computer}</p>
+              <p className="text-blue-900 dark:text-white text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold">{scores.computer}</p>
             </div>
           </div>
         </div>

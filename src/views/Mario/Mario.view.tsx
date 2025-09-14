@@ -26,7 +26,7 @@ const MarioRunnerView = () => {
     setIsJumping(true);
     setTimeout(() => {
       setIsJumping(false);
-    }, 300);
+    }, 500);
   }, [isPlaying, isGameOver, isJumping]);
 
   const startGame = useCallback(() => {
@@ -81,7 +81,7 @@ const MarioRunnerView = () => {
           if (
             pipePosition < marioPosition - 5 && 
             pipePosition + pipeRect.width > marioRect.left + 5 && 
-            marioBottom > gameAreaBottom - 120
+            marioBottom > gameAreaBottom - 135
           ) {
             endGame();
           }
@@ -188,8 +188,8 @@ const MarioRunnerView = () => {
           
           <div
             ref={marioRef}
-            className={`absolute bottom-16 left-12 w-16 h-16 transition-all duration-300 ${
-              isJumping ? 'transform -translate-y-32' : ''
+            className={`absolute bottom-16 left-12 w-16 h-16 transition-all duration-500 ${
+              isJumping ? 'transform -translate-y-40' : ''
             }`}
           >
             <img 
