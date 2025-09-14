@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
-import MarioImg from '../../assets/MarioGame/mario.gif';
-import GameOverImg from '../../assets/MarioGame/game-over.png';
-import PipeImg from '../../assets/MarioGame/pipe.png';
-import CloudsImg from '../../assets/MarioGame/clouds.png';
+import MarioImg from '/src/assets/MarioGame/mario.gif';
+import GameOverImg from '/src/assets/MarioGame/game-over.png';
+import PipeImg from '/src/assets/MarioGame/pipe.png';
+import CloudsImg from '/src/assets/MarioGame/clouds.png';
 
 const MarioRunnerView = () => {
   const [isJumping, setIsJumping] = useState(false);
