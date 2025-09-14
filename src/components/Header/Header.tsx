@@ -1,5 +1,7 @@
 import { useState, useCallback } from 'react';
 import { useTheme } from '../../contexts/ThemeContext';
+import LogoDark from '../../assets/logo-dark2.png';
+import LogoLight from '../../assets/logo-light2.png';
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -28,7 +30,7 @@ const Header = () => {
           <div className="flex-shrink-0">
             <a href="/" className="block">
               <img 
-                src={theme === 'dark' ? '/assets/logo-dark2.png' : '/assets/logo-light2.png'} 
+                src={theme === 'dark' ? LogoDark : LogoLight} 
                 alt="Logo DevSampaio" 
                 className="h-12 md:h-16 w-auto transition-transform duration-200 hover:scale-105"
               />
