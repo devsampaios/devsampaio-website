@@ -1,8 +1,4 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
-import MarioImg from '/assets/MarioGame/mario.gif';
-import GameOverImg from '/assets/MarioGame/game-over.png';
-import PipeImg from '/assets/MarioGame/pipe.png';
-import CloudsImg from '/assets/MarioGame/clouds.png';
 
 const MarioRunnerView = () => {
   const [isJumping, setIsJumping] = useState(false);
@@ -14,7 +10,7 @@ const MarioRunnerView = () => {
   const [highScore, setHighScore] = useState(() => {
     try {
       return parseInt(localStorage.getItem('marioHighScore') || '0');
-    } catch (error) {
+    } catch {
       return 0;
     }
   });
@@ -180,12 +176,12 @@ const MarioRunnerView = () => {
           <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-b from-green-400 to-green-600"></div>
           
           <img 
-            src={CloudsImg} 
+            src="/assets/MarioGame/clouds.png" 
             alt="Clouds" 
             className="absolute top-4 left-8 w-16 h-12 opacity-80"
           />
           <img 
-            src={CloudsImg} 
+            src="/assets/MarioGame/clouds.png" 
             alt="Clouds" 
             className="absolute top-8 right-16 w-20 h-14 opacity-70"
           />
@@ -197,7 +193,7 @@ const MarioRunnerView = () => {
             }`}
           >
             <img 
-              src={isGameOver ? GameOverImg : MarioImg} 
+              src={isGameOver ? '/assets/MarioGame/game-over.png' : '/assets/MarioGame/mario.gif'} 
               alt={isGameOver ? "Game Over Mario" : "Mario"}
               className="w-full h-full object-contain"
             />
@@ -210,7 +206,7 @@ const MarioRunnerView = () => {
             }`}
           >
             <img 
-              src={PipeImg} 
+              src="/assets/MarioGame/pipe.png" 
               alt="Pipe"
               className="w-full h-full object-contain"
             />
