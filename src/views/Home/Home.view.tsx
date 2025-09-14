@@ -1,19 +1,19 @@
 import { Separator } from '@moreirapontocom/npmhelpers';
-import ImagemMateus from '/assets/home/imagemMateus.jpeg';
-import LogoBootstrap from '/assets/home/bootstrap.png';
-import LogoC from '/assets/home/C.png';
-import LogoCss3 from '/assets/home/css-3.png';
-import LogoGit from '/assets/home/Git.png';
-import LogoHtml5 from '/assets/home/html-5.png';
-import LogoJs from '/assets/home/js.png';
-import LogoNodeJs from '/assets/home/Node.js.png';
-import LogoPHP from '/assets/home/PHP.png';
-import LogoPython from '/assets/home/Python.png';
-import LogoReactBootstrap from '/assets/home/React Bootstrap.png';
-import LogoReact from '/assets/home/React.png';
-import LogoTailwindCSS from '/assets/home/Tailwind CSS.png';
-import LogoTypeScript from '/assets/home/TypeScript.png';
-import LogoNPM from '/assets/home/NPM.png';
+import ImagemMateus from '../../../public/assets/home/imagemMateus.jpeg';
+import LogoBootstrap from '../../../public/assets/home/bootstrap.png';
+import LogoC from '../../../public/assets/home/C.png';
+import LogoCss3 from '../../../public/assets/home/css-3.png';
+import LogoGit from '../../../public/assets/home/Git.png';
+import LogoHtml5 from '../../../public/assets/home/html-5.png';
+import LogoJs from '../../../public/assets/home/js.png';
+import LogoNodeJs from '../../../public/assets/home/Node.js.png';
+import LogoPHP from '../../../public/assets/home/PHP.png';
+import LogoPython from '../../../public/assets/home/Python.png';
+import LogoReactBootstrap from '../../../public/assets/home/React Bootstrap.png';
+import LogoReact from '../../../public/assets/home/React.png';
+import LogoTailwindCSS from '../../../public/assets/home/Tailwind CSS.png';
+import LogoTypeScript from '../../../public/assets/home/TypeScript.png';
+import LogoNPM from '../../../public/assets/home/NPM.png';
 
 
 const HomeView = () => {
