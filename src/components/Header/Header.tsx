@@ -1,7 +1,7 @@
 import { useState, useCallback } from 'react';
 import { useTheme } from '../../contexts/ThemeContext';
-import LogoDark from '/src/assets/logo-dark2.png';
-import LogoLight from '/src/assets/logo-light2.png';
+import LogoDark from '/assets/logo-dark2.png';
+import LogoLight from '/assets/logo-light2.png';
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
