@@ -1,6 +1,4 @@
 import { Separator } from '@moreirapontocom/npmhelpers';
-import ImagemMateus from '../../assets/home/imagemMateus.jpeg';
-
 
 const HomeView = () => {
   const skills = [
