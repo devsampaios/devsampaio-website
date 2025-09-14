@@ -25,9 +25,17 @@ export const ThemeProvider = ({ children }: ThemeProviderProps) => {
   const [theme, setTheme] = useState<Theme>(() => {
     try {
       const savedTheme = localStorage.getItem('theme') as Theme;
-      return savedTheme || 'dark';
+      if (savedTheme) {
+        return savedTheme;
+      }
+      
+      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        return 'dark';
+      }
+      
+      return 'light';
     } catch (error) {
-      return 'dark';
+      return 'light';
     }
   });
 

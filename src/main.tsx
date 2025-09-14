@@ -9,13 +9,6 @@ import SnakeGame from './views/Snake/SnakeGame.view'
 import TicTacToeView from './views/TicTacToe/TicTacToe.view'
 import MarioRunnerView from './views/Mario/Mario.view'
 
-
-if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-  document.documentElement.classList.add('dark')
-} else {
-  document.documentElement.classList.remove('dark')
-}
-
 const router = createBrowserRouter([
   {
     path: '/',
