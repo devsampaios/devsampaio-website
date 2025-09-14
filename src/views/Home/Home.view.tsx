@@ -53,7 +53,7 @@ const HomeView = () => {
             </h1>
             
             <p className="text-blue-700 dark:text-neutral-300 text-lg sm:text-xl lg:text-2xl leading-relaxed mb-8">
-              I am Mateus, a Full-Stack Developer from Minas Gerais who is passionate about programming. Explore more about my projects and skills!
+              I am Mateus, a Full-Stack Developer from Minas Gerais who likes programming. Explore more about my projects and skills!
             </p>
           </div>
         </div>
