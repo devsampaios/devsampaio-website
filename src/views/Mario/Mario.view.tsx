@@ -189,7 +189,7 @@ const MarioRunnerView = () => {
           <div
             ref={marioRef}
             className={`absolute bottom-16 left-12 w-16 h-16 transition-all duration-300 ${
-              isJumping ? 'transform -translate-y-40' : ''
+              isJumping ? 'transform -translate-y-32' : ''
             }`}
           >
             <img 
