@@ -30,11 +30,12 @@ const MarioRunnerView = () => {
   }, [isPlaying, isGameOver, isJumping]);
 
   const startGame = useCallback(() => {
+    const isMobile = window.innerWidth < 640;
     setIsPlaying(true);
     setIsGameOver(false);
     setScore(0);
     setDifficultyLevel(1);
-    setGameSpeed(1.5);
+    setGameSpeed(isMobile ? 2.0 : 1.5);
     setIsJumping(false);
 
     scoreIntervalRef.current = setInterval(() => {
@@ -77,11 +78,15 @@ const MarioRunnerView = () => {
           const marioPosition = marioRect.left + marioRect.width;
           const marioBottom = marioRect.bottom;
           const gameAreaBottom = pipe.offsetParent ? (pipe.offsetParent as HTMLElement).getBoundingClientRect().bottom : window.innerHeight;
+          
+          const isMobile = window.innerWidth < 640;
+          const groundHeight = isMobile ? 48 : 64;
+          const pipeHeight = isMobile ? 64 : 128;
 
           if (
             pipePosition < marioPosition - 5 && 
             pipePosition + pipeRect.width > marioRect.left + 5 && 
-            marioBottom > gameAreaBottom - 135
+            marioBottom > gameAreaBottom - groundHeight - pipeHeight + (isMobile ? 30 : 20)
           ) {
             endGame();
           }
@@ -103,7 +108,12 @@ const MarioRunnerView = () => {
           const currentLevel = Math.floor(prevScore / 200) + 1;
           setDifficultyLevel(currentLevel);
           
-          const updatedSpeed = Math.max(1.5 - (currentLevel - 1) * 0.1, 0.8);
+          const isMobile = window.innerWidth < 640;
+          const baseSpeed = isMobile ? 2.0 : 1.5;
+          const minSpeed = isMobile ? 1.2 : 0.8;
+          const speedReduction = isMobile ? 0.05 : 0.1;
+          
+          const updatedSpeed = Math.max(baseSpeed - (currentLevel - 1) * speedReduction, minSpeed);
           setGameSpeed(updatedSpeed);
           
           return prevScore;
@@ -171,9 +181,9 @@ const MarioRunnerView = () => {
           </div>
         </div>
 
-        <div className="relative w-full h-64 sm:h-80 rounded-xl overflow-hidden border-2 border-blue-300 dark:border-neutral-700" style={{background: 'linear-gradient(#87CEEB, #E0F6FF)'}}>
+        <div className="relative w-full h-48 sm:h-64 md:h-80 rounded-xl overflow-hidden border-2 border-blue-300 dark:border-neutral-700" style={{background: 'linear-gradient(#87CEEB, #E0F6FF)'}}>
           
-          <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-b from-green-400 to-green-600"></div>
+          <div className="absolute bottom-0 left-0 right-0 h-12 sm:h-16 bg-gradient-to-b from-green-400 to-green-600"></div>
           
           <img 
             src="/assets/MarioGame/clouds.png" 
@@ -188,8 +198,8 @@ const MarioRunnerView = () => {
           
           <div
             ref={marioRef}
-            className={`absolute bottom-16 left-12 w-16 h-16 transition-all duration-300 ${
-              isJumping ? 'transform -translate-y-32' : ''
+            className={`absolute bottom-12 sm:bottom-16 left-12 w-16 h-16 transition-all duration-300 ${
+              isJumping ? 'transform -translate-y-36 sm:-translate-y-32' : ''
             }`}
           >
             <img 
@@ -201,9 +211,12 @@ const MarioRunnerView = () => {
 
           <div
             ref={pipeRef}
-            className={`absolute bottom-0 right-0 w-16 h-32 ${
-              isPlaying && !isGameOver ? 'animate-pipe-move' : ''
+            className={`absolute bottom-0 w-12 sm:w-16 h-16 sm:h-32 ${
+              isPlaying && !isGameOver ? 'animate-pipe-move' : 'right-0'
             }`}
+            style={{
+              right: isPlaying && !isGameOver ? 'initial' : '0'
+            }}
           >
             <img 
               src="/assets/MarioGame/pipe.png" 
@@ -284,10 +297,10 @@ const MarioRunnerView = () => {
       <style>{`
         @keyframes pipe-move {
           from {
-            transform: translateX(0);
+            transform: translateX(calc(100vw + 100px));
           }
           to {
-            transform: translateX(-100vw);
+            transform: translateX(-200px);
           }
         }
         
