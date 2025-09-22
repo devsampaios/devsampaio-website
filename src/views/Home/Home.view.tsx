@@ -35,7 +35,7 @@ const HomeView = () => {
           <div className="mb-8 lg:mb-12">
             <div className="relative group">
               <img 
-                src='/assets/home/imagemMateus.jpeg' 
+                src='/assets/home/imagemMateus.png' 
                 className="rounded-full w-48 h-48 sm:w-56 sm:h-56 lg:w-64 lg:h-64 object-cover shadow-2xl border-4 border-yellow-400/40 group-hover:border-yellow-400/70 transition-all duration-500 group-hover:scale-105" 
                 alt="Imagem do Mateus" 
               />
