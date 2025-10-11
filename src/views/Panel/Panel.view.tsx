@@ -8,7 +8,6 @@ const PanelView = () => {
   const {alert} = useContext(AlertContext)
   return <>
     <Header />
-    <Alert alert={alert} />
     <Outlet />
     <Footer />
   </>
