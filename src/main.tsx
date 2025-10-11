@@ -1,6 +1,6 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import PanelView from './views/Panel/Panel.view'
 import { AlertProvider } from '@moreirapontocom/npmhelpers'
 import { ThemeProvider } from './contexts/ThemeContext'
@@ -15,11 +15,7 @@ const router = createBrowserRouter([
     element: <PanelView />,
     children: [
       {
-        index: true,
-        element: <Navigate to="/home" replace />,
-      },
-      {
-        path: 'home',
+        path: '',
         element: <HomeView />,
       },
       {
