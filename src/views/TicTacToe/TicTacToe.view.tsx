@@ -208,7 +208,6 @@ const TicTacToeView = () => {
     <div className="min-h-screen bg-gradient-to-br from-white via-blue-50 to-white dark:from-zinc-900 dark:via-neutral-900 dark:to-zinc-900 flex items-center justify-center p-4">
       <div className="bg-gradient-to-br from-blue-50/60 to-blue-100/60 dark:from-neutral-800/60 dark:to-neutral-900/60 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-blue-200/40 dark:border-neutral-700/40 shadow-2xl max-w-2xl w-full">
         
-        {/* Header */}
         <div className="text-center mb-8">
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-blue-900 dark:text-white mb-4">
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-blue-700 dark:from-yellow-300 dark:to-yellow-500">
@@ -216,7 +215,6 @@ const TicTacToeView = () => {
             </span>
           </h1>
           
-          {/* Current Player or Game Status */}
           {!gameOver ? (
             <div className="flex items-center justify-center gap-3">
               {currentPlayer === 'X' ? (
@@ -268,7 +266,6 @@ const TicTacToeView = () => {
           )}
         </div>
 
-        {/* Difficulty Selector */}
         <div className="flex justify-center mb-6">
           <div className="bg-blue-100/50 dark:bg-neutral-800/50 rounded-lg p-4 border border-blue-200/60 dark:border-neutral-700">
             <p className="text-blue-700 dark:text-neutral-300 text-sm mb-3 text-center flex items-center gap-2 justify-center">
@@ -302,7 +299,6 @@ const TicTacToeView = () => {
           </div>
         </div>
 
-        {/* Score Board */}
         <div className="flex justify-center mb-8">
           <div className="grid grid-cols-3 gap-2 sm:gap-4 md:gap-6 w-full max-w-sm sm:max-w-md md:max-w-lg">
             <div className="bg-blue-500/10 rounded-lg p-2 sm:p-3 md:p-4 border border-blue-500/30 text-center">
@@ -332,7 +328,6 @@ const TicTacToeView = () => {
           </div>
         </div>
 
-        {/* Game Board */}
         <div className="flex justify-center mb-8">
           <div className="bg-blue-100/30 dark:bg-neutral-900/50 rounded-xl border-2 border-blue-300/50 dark:border-neutral-700 p-4 sm:p-6">
             <div className="grid grid-cols-3 gap-3 sm:gap-4">
@@ -376,7 +371,6 @@ const TicTacToeView = () => {
           </div>
         </div>
 
-        {/* Action Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
           <button
             onClick={resetGame}
@@ -393,7 +387,6 @@ const TicTacToeView = () => {
           </button>
         </div>
 
-        {/* Instructions */}
         <div className="mt-8 text-center">
           <p className="text-blue-600 dark:text-neutral-400 text-sm sm:text-base flex items-center gap-2 justify-center flex-wrap mb-2">
             <i className="fas fa-lightbulb text-yellow-400"></i>

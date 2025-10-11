@@ -444,7 +444,7 @@ const SnakeGame = () => {
                 <h2 className="text-2xl font-bold text-red-600 dark:text-red-400 mb-4">Game Over!</h2>
                 <p className="text-blue-800 dark:text-yellow-100 mb-2">Final Score: <span className="text-blue-600 dark:text-yellow-400 font-bold">{score}</span></p>
                 {score === highScore && score > 0 && (
-                  <p className="text-green-600 dark:text-green-400 text-sm mb-4">🎉 New High Score!</p>
+                  <p className="text-green-600 dark:text-green-400 text-sm mb-4">New High Score!</p>
                 )}
                 <button
                   onClick={startGame}
@@ -492,7 +492,7 @@ const SnakeGame = () => {
         <div className="mt-6 text-center">
           {isPlaying && !isPaused && (
             <p className="text-blue-700 dark:text-yellow-100 text-sm mb-4">
-              💡 Use Arrows/swipe to move • Space/tap to pause
+              Use Arrows/swipe to move • Space/tap to pause
             </p>
           )}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-md mx-auto">
