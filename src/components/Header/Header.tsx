@@ -11,7 +11,7 @@ const Header = () => {
   }, [isMobileMenuOpen]);
 
   const navigationItems = [
-    { href: "/home", icon: "fas fa-home", text: "Home" },
+    { href: "/", icon: "fas fa-home", text: "Home" },
     { href: "mailto:mateussampaio2710@gmail.com", icon: "fas fa-comment-dots", text: "Tell Me" }
   ];
 
@@ -74,7 +74,6 @@ const Header = () => {
                 </div>
               </li>
               
-              {/* Games Dropdown */}
               <li className="relative"
                   onMouseEnter={() => setIsGamesDropdownOpen(true)}
                   onMouseLeave={() => setIsGamesDropdownOpen(false)}
@@ -85,7 +84,6 @@ const Header = () => {
                   <i className={`fas fa-chevron-down ml-2 text-sm text-blue-800 dark:text-neutral-200 transition-transform duration-200 ${isGamesDropdownOpen ? 'rotate-180' : ''}`} />
                 </div>
                 
-                {/* Dropdown Menu */}
                 <div className={`absolute top-full left-0 mt-1 w-48 bg-white dark:bg-neutral-800 border border-blue-200 dark:border-neutral-700 rounded-lg shadow-xl transition-all duration-200 z-50 ${isGamesDropdownOpen ? 'opacity-100 visible transform translate-y-0' : 'opacity-0 invisible transform -translate-y-2'}`}>
                   <ul className="py-2">
                     {gameOptions.map((game, index) => (
