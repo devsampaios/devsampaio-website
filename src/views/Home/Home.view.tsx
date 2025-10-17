@@ -13,9 +13,8 @@ const HomeView = () => {
     { logo: "/assets/home/bootstrap.png", name: "Bootstrap" },
     { logo: "/assets/home/Tailwind CSS.png", name: "Tailwind CSS" },
     { logo: "/assets/home/Git.png", name: "Git" },
-    { logo: "/assets/home/C.png", name: "C" },
-    { logo: "/assets/home/PHP.png", name: "PHP" },
-    { logo: "/assets/home/Python.png", name: "Python" }
+    { logo: "/assets/home/Electron.png", name: "Electron" },
+    { logo: "/assets/home/PHP.png", name: "PHP" }
   ];
 
   return (
