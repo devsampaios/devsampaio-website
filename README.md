@@ -1,14 +1,77 @@
-👋 Olá, eu sou Mateus
-Desenvolvedor Full Stack | 17 anos
-Sou um desenvolvedor apaixonado por criar experiências web completas e funcionais. Atualmente trabalho com as tecnologias mais modernas do mercado, construindo aplicações do front-end ao back-end.
+# 💼 Portfólio - Mateus
 
-🚀 Stack Principal
-  Frontend: React.js
-  AI Assistant: Claude AI (estilização e responsividade)
+![Badge](https://img.shields.io/badge/Status-Em%20Desenvolvimento-yellow)
+![Badge](https://img.shields.io/badge/Desenvolvedor-Full%20Stack-blue)
 
-💡 Sobre Este Portfólio
-Este site foi desenvolvido para mostrar meus projetos e habilidades como desenvolvedor Full Stack. Utilizei o Claude AI para auxiliar na criação de estilos modernos e garantir uma experiência responsiva em todos os dispositivos. Utilizei meus conhecimentos no React para converter meus jogos desenvolvidos em JS padrão para React
-🎯 O Que Eu Faço
-Desenvolvimento de aplicações web completas, desde a interface do usuário até a lógica do servidor e banco de dados. Meu foco é criar soluções eficientes, escaláveis e com excelente experiência do usuário.
+## 👨‍💻 Sobre Mim
 
-Sempre em busca de novos desafios e oportunidades para crescer como desenvolvedor.
+Olá! Sou **Mateus**, tenho 17 anos e atuo como **Desenvolvedor Full Stack**. Apaixonado por tecnologia e desenvolvimento web, construo aplicações completas utilizando as melhores práticas do mercado.
+
+## 🚀 Tecnologias Utilizadas
+
+### Frontend
+- **React.js** - Biblioteca JavaScript para construção de interfaces
+- **HTML5 & CSS3** - Estrutura e estilização
+- **JavaScript (ES6+)** - Linguagem de programação
+
+### Ferramentas & Outros
+- **Claude AI** - Assistente de IA para estilização e responsividade
+- **Git & GitHub** - Controle de versão
+- **VS Code** - Editor de código
+
+## ✨ Funcionalidades
+
+- ✅ Design responsivo para todos os dispositivos
+- ✅ Interface moderna e intuitiva
+- ✅ Seção de projetos
+- ✅ Formulário de contato
+- ✅ Animações suaves
+
+## 🎨 Layout
+
+O design foi desenvolvido com foco em:
+- **Responsividade:** Adaptável para mobile, tablet e desktop
+- **Acessibilidade:** Seguindo boas práticas de UX/UI
+- **Performance:** Carregamento otimizado
+- **Estilização moderna:** Com auxílio do Claude AI
+
+## 📂 Estrutura do Projeto
+```
+portfolio/
+├── src/
+│   ├── components/
+│   ├── views/
+│   └── contexts/
+├── public/
+├── package.json
+└── README.md
+```
+
+## 🔧 Como Executar o Projeto
+```bash
+# Clone o repositório
+git clone https://github.com/seu-usuario/seu-portfolio.git
+
+# Entre no diretório
+cd seu-portfolio
+
+# Instale as dependências
+npm install
+
+# Execute o projeto
+npm run dev
+```
+
+## 📫 Contato
+
+- **Email:** mateussampaio2710@gmail.com
+- **LinkedIn:** www.linkedin.com/in/devsampaio
+- **GitHub:** https://github.com/devsampaios
+
+## 📝 Licença
+
+Este projeto está sob a licença MIT.
+
+---
+
+⭐ Desenvolvido com dedicação por Mateus
