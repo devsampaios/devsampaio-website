@@ -1,6 +1,6 @@
 # 💼 Portfólio - Mateus
 
-![Badge](https://img.shields.io/badge/Status-Em%20Desenvolvimento-yellow)
+![Badge](https://img.shields.io/badge/Status-%20Desenvolvido-yellow)
 ![Badge](https://img.shields.io/badge/Desenvolvedor-Full%20Stack-blue)
 
 ## 👨‍💻 Sobre Mim
