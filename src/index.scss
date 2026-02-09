@@ -1,75 +1,70 @@
-@reference "tailwindcss";
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-@layer base {
-  :root {
-    color-scheme: light;
-    --bg: #FFFFFF;
-    --bg-soft: #F6F8FC;
-    --card: #FFFFFF;
-    --border: #E6EAF2;
-    --text: #0B1220;
-    --text-2: #52607A;
-    --muted: #7E8AA3;
-    --primary: #2563EB;
-    --accent: #14B8A6;
-    --success: #16A34A;
-    --warning: #F59E0B;
-    --danger: #EF4444;
-    --radius-sm: 10px;
-    --radius-md: 16px;
-    --radius-lg: 24px;
-    --shadow-soft: 0 10px 40px rgba(15, 23, 42, 0.05);
-    --shadow-card: 0 15px 50px rgba(15, 23, 42, 0.08);
-    --content-max: 1180px;
-    --transition: 160ms ease;
-  }
-
-  *,
-  *::before,
-  *::after {
-    @apply box-border;
-  }
-
-  body {
-    margin: 0;
-    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
-    overflow-x: hidden;
-  }
-
-  h1, h2, h3, h4, h5, h6, p {
-    @apply m-0;
-  }
-
-  img {
-    @apply block max-w-full h-auto;
-  }
-
-  a {
-    @apply no-underline text-inherit;
-  }
-
-  button, a {
-    @apply min-h-[44px];
-  }
-
-  button {
-    font-family: inherit;
-  }
-
-  :focus-visible {
-    outline: 2px solid var(--primary);
-    outline-offset: 2px;
-  }
+:root {
+  color-scheme: light;
+  --bg: #FFFFFF;
+  --bg-soft: #F6F8FC;
+  --card: #FFFFFF;
+  --border: #E6EAF2;
+  --text: #0B1220;
+  --text-2: #52607A;
+  --muted: #7E8AA3;
+  --primary: #2563EB;
+  --accent: #14B8A6;
+  --success: #16A34A;
+  --warning: #F59E0B;
+  --danger: #EF4444;
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --shadow-soft: 0 10px 40px rgba(15, 23, 42, 0.05);
+  --shadow-card: 0 15px 50px rgba(15, 23, 42, 0.08);
+  --content-max: 1180px;
+  --transition: 160ms ease;
 }
 
-@layer components {
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  margin: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button, a {
+  min-height: 44px;
+}
+
+button {
+  font-family: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
   .page {
     background: radial-gradient(circle at 20% 20%, rgba(20, 184, 166, 0.08) 0, transparent 35%), radial-gradient(circle at 80% 0%, rgba(37, 99, 235, 0.08) 0, transparent 30%), var(--bg);
   }
@@ -89,7 +84,9 @@
   }
 
   .sectionHeader {
-    @apply grid gap-2 mb-[clamp(1.5rem,3vw,2.5rem)];
+    display: grid;
+    gap: 0.5rem;
+    margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
   }
 
   .eyebrow {
@@ -116,11 +113,14 @@
   }
 
   .heroLayout {
-    @apply grid items-center gap-[clamp(1.5rem,4vw,3rem)];
+    display: grid;
+    align-items: center;
+    gap: clamp(1.5rem, 4vw, 3rem);
   }
 
   .heroContent {
-    @apply grid gap-4;
+    display: grid;
+    gap: 1rem;
   }
 
   .heroTitle {
@@ -141,11 +141,19 @@
   }
 
   .badgeRow {
-    @apply flex flex-wrap gap-2;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
   }
 
   .chip {
-    @apply inline-flex items-center gap-2 rounded-full px-3 py-2 font-semibold text-[0.9rem];
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 9999px;
+    padding: 0.5rem 0.75rem;
+    font-weight: 600;
+    font-size: 0.9rem;
     background: rgba(37, 99, 235, 0.08);
     color: var(--text);
   }
@@ -157,11 +165,25 @@
   }
 
   .ctaRow {
-    @apply flex flex-wrap gap-3 mt-2;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
   }
 
   .btn {
-    @apply inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl border text-base font-semibold transition duration-150 ease-in-out cursor-pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    border-radius: 0.75rem;
+    border-width: 1px;
+    border-style: solid;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 150ms ease-in-out;
+    cursor: pointer;
     border-color: transparent;
   }
 
@@ -185,7 +207,9 @@
   }
 
   .btnSecondary {
-    @apply bg-[var(--card)] border border-[var(--border)] text-[var(--text)];
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--text);
   }
 
   .btnSecondary:hover {
@@ -194,29 +218,40 @@
   }
 
   .btnDanger {
-    @apply bg-[rgba(239,68,68,0.1)] border border-[rgba(239,68,68,0.2)] text-[#b91c1c];
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.2);
+    color: #b91c1c;
   }
 
   .btnSuccess {
-    @apply bg-[rgba(16,185,129,0.15)] border border-[rgba(16,185,129,0.3)] text-[#0f766e];
+    background: rgba(16, 185, 129, 0.15);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    color: #0f766e;
   }
 
   .btnWarning {
-    @apply bg-[rgba(245,158,11,0.15)] border border-[rgba(245,158,11,0.3)] text-[#92400e];
+    background: rgba(245, 158, 11, 0.15);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+    color: #92400e;
   }
 
   .btnGhost {
-    @apply border text-[var(--primary)];
+    border-width: 1px;
+    border-style: solid;
+    color: var(--primary);
     background: rgba(37, 99, 235, 0.08);
     border-color: rgba(37, 99, 235, 0.18);
   }
 
   .btnDifficulty {
-    @apply min-w-[96px] justify-center;
+    min-width: 96px;
+    justify-content: center;
   }
 
   .btnEasy {
-    @apply bg-[rgba(22,163,74,0.1)] border-[rgba(22,163,74,0.4)] text-[#0f5132];
+    background: rgba(22, 163, 74, 0.1);
+    border-color: rgba(22, 163, 74, 0.4);
+    color: #0f5132;
     border-style: solid;
   }
 
@@ -228,7 +263,9 @@
   }
 
   .btnMedium {
-    @apply bg-[rgba(245,158,11,0.12)] border-[rgba(245,158,11,0.4)] text-[#92400e];
+    background: rgba(245, 158, 11, 0.12);
+    border-color: rgba(245, 158, 11, 0.4);
+    color: #92400e;
     border-style: solid;
   }
 
@@ -240,7 +277,9 @@
   }
 
   .btnHard {
-    @apply bg-[rgba(239,68,68,0.12)] border-[rgba(239,68,68,0.4)] text-[#991b1b];
+    background: rgba(239, 68, 68, 0.12);
+    border-color: rgba(239, 68, 68, 0.4);
+    color: #991b1b;
     border-style: solid;
   }
 
@@ -252,63 +291,89 @@
   }
 
   .heroMeta {
-    @apply grid gap-4;
+    display: grid;
+    gap: 1rem;
   }
 
   .heroCard {
-    @apply p-4 rounded-2xl border shadow-sm;
+    padding: 1rem;
+    border-radius: 1rem;
+    border-width: 1px;
+    border-style: solid;
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
     background: var(--card);
     border-color: var(--border);
     box-shadow: var(--shadow-soft);
   }
 
   .heroMedia {
-    @apply grid gap-4 justify-items-center;
+    display: grid;
+    gap: 1rem;
+    justify-items: center;
   }
 
   .heroAvatar {
-    @apply relative rounded-3xl p-3 shadow-lg;
+    position: relative;
+    border-radius: 1.5rem;
+    padding: 0.75rem;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
     width: min(320px, 90vw);
     aspect-ratio: 1 / 1;
     background: linear-gradient(145deg, rgba(37, 99, 235, 0.08), rgba(20, 184, 166, 0.08));
   }
 
   .heroAvatar img {
-    @apply w-full h-full object-cover rounded-2xl;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 1rem;
     border: 6px solid #F4F6FB;
   }
 
   .stats {
-    @apply grid gap-3;
+    display: grid;
+    gap: 0.75rem;
     grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   }
 
   .statCard {
-    @apply rounded-xl border p-4;
+    border-radius: 0.75rem;
+    border-width: 1px;
+    border-style: solid;
+    padding: 1rem;
     background: var(--card);
     border-color: var(--border);
     box-shadow: var(--shadow-soft);
   }
 
   .statTitle {
-    @apply text-[var(--text-2)] text-sm;
+    color: var(--text-2);
+    font-size: 0.875rem;
+    line-height: 1.25rem;
   }
 
   .statValue {
-    @apply text-lg font-bold mt-1;
+    margin-top: 0.25rem;
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    font-weight: 700;
   }
 
   .skillsShell {
-    @apply grid gap-4;
+    display: grid;
+    gap: 1rem;
   }
 
   .skillsScroller {
-    @apply overflow-x-auto pb-2;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
     -webkit-overflow-scrolling: touch;
   }
 
   .skillsGrid {
-    @apply grid gap-4 min-w-full;
+    display: grid;
+    gap: 1rem;
+    min-width: 100%;
     grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
     scroll-snap-type: x mandatory;
   }
@@ -318,7 +383,14 @@
   }
 
   .skillCard {
-    @apply grid gap-2 justify-items-center rounded-xl border p-4 transition;
+    display: grid;
+    gap: 0.5rem;
+    justify-items: center;
+    border-radius: 0.75rem;
+    border-width: 1px;
+    border-style: solid;
+    padding: 1rem;
+    transition: var(--transition);
     background: var(--card);
     border-color: var(--border);
   }
@@ -330,19 +402,30 @@
   }
 
   .skillCard img {
-    @apply w-12 h-12 object-contain;
+    width: 3rem;
+    height: 3rem;
+    object-fit: contain;
   }
 
   .skillName {
-    @apply font-semibold text-center text-[var(--text-2)];
+    font-weight: 600;
+    text-align: center;
+    color: var(--text-2);
   }
 
   .projectsGrid {
-    @apply grid gap-4;
+    display: grid;
+    gap: 1rem;
   }
 
   .projectCard {
-    @apply grid gap-3 rounded-2xl border p-5 transition;
+    display: grid;
+    gap: 0.75rem;
+    border-radius: 1rem;
+    border-width: 1px;
+    border-style: solid;
+    padding: 1.25rem;
+    transition: var(--transition);
     background: var(--card);
     border-color: var(--border);
     box-shadow: var(--shadow-soft);
@@ -355,27 +438,43 @@
   }
 
   .projectHeader {
-    @apply flex items-center justify-between gap-3;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
   }
 
   .projectTitle {
-    @apply text-lg font-bold;
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    font-weight: 700;
   }
 
   .projectDesc {
-    @apply text-[var(--text-2)] leading-6;
+    color: var(--text-2);
+    line-height: 1.5rem;
   }
 
   .projectMeta {
-    @apply flex flex-wrap gap-2;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
   }
 
   .projectActions {
-    @apply flex flex-wrap gap-2;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
   }
 
   .badge {
-    @apply inline-flex items-center gap-2 rounded-full px-2.5 py-1.5 font-semibold text-[0.9rem];
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 9999px;
+    padding: 0.375rem 0.625rem;
+    font-weight: 600;
+    font-size: 0.9rem;
     background: rgba(82, 96, 122, 0.1);
     color: var(--text-2);
   }
@@ -391,11 +490,16 @@
   }
 
   .gridSplit {
-    @apply grid gap-4;
+    display: grid;
+    gap: 1rem;
   }
 
   .card {
-    @apply rounded-xl border p-5 shadow-sm;
+    border-radius: 0.75rem;
+    border-width: 1px;
+    border-style: solid;
+    padding: 1.25rem;
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
     background: var(--card);
     border-color: var(--border);
     box-shadow: var(--shadow-soft);
@@ -406,24 +510,43 @@
   }
 
   .navBar {
-    @apply sticky top-0 z-40 backdrop-blur bg-[var(--card)] border-b;
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    backdrop-filter: blur(8px);
+    background: var(--card);
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
     border-color: var(--border);
   }
 
   .navInner {
-    @apply flex items-center justify-between gap-4 py-3;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
   }
 
   .navBrand img {
-    @apply h-12 md:h-[68px];
+    height: 3rem;
   }
 
   .navLinks {
-    @apply hidden items-center gap-2;
+    display: none;
+    align-items: center;
+    gap: 0.5rem;
   }
 
   .navLink {
-    @apply inline-flex items-center gap-2 px-3 py-2 rounded-md font-semibold transition;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.375rem;
+    font-weight: 600;
+    transition: var(--transition);
     background: transparent;
     border: none;
     color: var(--text);
@@ -441,11 +564,25 @@
   }
 
   .navDropdown {
-    @apply relative;
+    position: relative;
   }
 
   .navDropdownMenu {
-    @apply absolute mt-2 left-0 min-w-[220px] rounded-xl border p-2 grid gap-1 shadow-lg opacity-0 invisible transition bg-white;
+    position: absolute;
+    margin-top: 0.5rem;
+    left: 0;
+    min-width: 220px;
+    border-radius: 0.75rem;
+    border-width: 1px;
+    border-style: solid;
+    padding: 0.5rem;
+    display: grid;
+    gap: 0.25rem;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition);
+    background: #fff;
     border-color: var(--border);
     box-shadow: var(--shadow-card);
     transform: translateY(-6px);
@@ -460,7 +597,13 @@
   }
 
   .navDropdownItem {
-    @apply flex items-center gap-3 px-3 py-3 rounded-md transition no-underline;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    border-radius: 0.375rem;
+    transition: var(--transition);
+    text-decoration: none;
     background: transparent;
     border: none;
     color: var(--text);
@@ -472,12 +615,18 @@
   }
 
   .mobileNavToggle {
-    @apply border rounded-md bg-[var(--card)] p-2;
+    border: 1px solid;
+    border-radius: 0.375rem;
+    background: var(--card);
+    padding: 0.5rem;
     border-color: var(--border);
   }
 
   .mobileNavPanel {
-    @apply grid gap-2 py-3;
+    display: grid;
+    gap: 0.5rem;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
   }
 
   .footer {
@@ -487,11 +636,24 @@
   }
 
   .footerLinks {
-    @apply flex flex-wrap justify-center gap-3;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
   }
 
   .footerLink {
-    @apply inline-flex items-center justify-center gap-2 rounded-xl border px-4 py-3 transition no-underline text-[var(--text)];
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 0.75rem;
+    border-width: 1px;
+    border-style: solid;
+    padding: 0.75rem 1rem;
+    transition: var(--transition);
+    text-decoration: none;
+    color: var(--text);
     background: rgba(82, 96, 122, 0.08);
     border-color: var(--border);
   }
@@ -502,26 +664,45 @@
   }
 
   .footerMeta {
-    @apply text-center text-[var(--text-2)] mt-4 text-[0.95rem];
+    text-align: center;
+    color: var(--text-2);
+    margin-top: 1rem;
+    font-size: 0.95rem;
   }
 
   .gameShell {
-    @apply grid gap-3 rounded-2xl border p-4 shadow-sm;
+    display: grid;
+    gap: 0.75rem;
+    border-radius: 1rem;
+    border-width: 1px;
+    border-style: solid;
+    padding: 1rem;
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
     background: var(--card);
     border-color: var(--border);
     box-shadow: var(--shadow-soft);
   }
 
   .gameHeader {
-    @apply flex items-center justify-between gap-3;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
   }
 
   .gameActions {
-    @apply flex flex-wrap gap-2;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
   }
 
   .gameViewport {
-    @apply relative w-full overflow-hidden rounded-xl border;
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 0.75rem;
+    border-width: 1px;
+    border-style: solid;
     aspect-ratio: 16 / 9;
     background: var(--bg-soft);
     border-color: var(--border);
@@ -529,7 +710,10 @@
 
   .gameFrame,
   .gameCanvas {
-    @apply w-full h-full border-0 block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
   }
 
   .gameCanvas {
@@ -537,12 +721,23 @@
   }
 
   .gameOverlay {
-    @apply absolute inset-0 grid place-items-center p-4;
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    padding: 1rem;
     background: rgba(11, 18, 32, 0.55);
   }
 
   .gameOverlayCard {
-    @apply grid gap-3 rounded-2xl border p-5 text-center shadow-lg;
+    display: grid;
+    gap: 0.75rem;
+    border-radius: 1rem;
+    border-width: 1px;
+    border-style: solid;
+    padding: 1.25rem;
+    text-align: center;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
     background: var(--card);
     border-color: var(--border);
     box-shadow: var(--shadow-card);
@@ -550,11 +745,17 @@
   }
 
   .gameMeta {
-    @apply flex flex-wrap gap-2 justify-center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
   }
 
   .pill {
-    @apply px-3 py-1 rounded-full font-semibold text-[0.9rem];
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-weight: 600;
+    font-size: 0.9rem;
     background: rgba(37, 99, 235, 0.12);
     color: var(--text);
   }
@@ -570,34 +771,55 @@
   }
 
   .metricGrid {
-    @apply grid gap-3;
+    display: grid;
+    gap: 0.75rem;
     grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   }
 
   .metricCard {
-    @apply rounded-xl border p-4 text-center;
+    border-radius: 0.75rem;
+    border-width: 1px;
+    border-style: solid;
+    padding: 1rem;
+    text-align: center;
     background: var(--bg-soft);
     border-color: var(--border);
   }
 
   .metricLabel {
-    @apply font-semibold text-[var(--text-2)];
+    font-weight: 600;
+    color: var(--text-2);
     font-size: 0.95rem;
   }
 
   .metricValue {
-    @apply font-bold text-xl mt-1 text-[var(--text)];
+    margin-top: 0.25rem;
+    font-weight: 700;
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    color: var(--text);
   }
 
   .tttBoard {
-    @apply grid gap-3 justify-items-center;
+    display: grid;
+    gap: 0.75rem;
+    justify-items: center;
     grid-template-columns: repeat(3, 1fr);
   }
 
   .tttCell {
     width: min(28vw, 120px);
     aspect-ratio: 1 / 1;
-    @apply rounded-xl border-2 bg-[var(--bg-soft)] grid place-items-center font-bold text-[clamp(1.5rem,4vw,2.4rem)] text-[var(--text)] transition;
+    border-radius: 0.75rem;
+    border-width: 2px;
+    border-style: solid;
+    background: var(--bg-soft);
+    display: grid;
+    place-items: center;
+    font-weight: 700;
+    font-size: clamp(1.5rem, 4vw, 2.4rem);
+    color: var(--text);
+    transition: var(--transition);
   }
 
   .tttCell.x {
@@ -633,7 +855,12 @@
   }
 
   .runnerStage {
-    @apply relative w-full overflow-hidden rounded-2xl border;
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 1rem;
+    border-width: 1px;
+    border-style: solid;
     aspect-ratio: 16 / 9;
     min-height: 320px;
     background: linear-gradient(#87CEEB, #E0F6FF);
@@ -641,17 +868,22 @@
   }
 
   .runnerGround {
-    @apply absolute bottom-0 left-0 right-0;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
     height: 16%;
     background: linear-gradient(180deg, #34d399, #059669);
   }
 
   .runnerCloud {
-    @apply absolute opacity-75;
+    position: absolute;
+    opacity: 0.75;
   }
 
   .runnerCharacter {
-    @apply absolute transition-all duration-300;
+    position: absolute;
+    transition: all 300ms;
     bottom: 16%;
     left: 12%;
     width: 72px;
@@ -659,52 +891,54 @@
   }
 
   .runnerPipe {
-    @apply absolute bottom-0;
+    position: absolute;
+    bottom: 0;
     width: 64px;
     height: 120px;
   }
+
+@media (min-width: 768px) {
+  .heroLayout {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .projectsGrid {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  }
+
+  .navBrand img {
+    height: 68px;
+  }
+
+  .navLinks {
+    display: flex;
+  }
+
+  .mobileNavToggle {
+    display: none;
+  }
 }
 
-@layer utilities {
-  @media (min-width: 768px) {
-    .heroLayout {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .projectsGrid {
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    }
-
-    .navLinks {
-      display: flex;
-    }
-
-    .mobileNavToggle {
-      display: none;
-    }
+@media (min-width: 1024px) {
+  .heroLayout {
+    grid-template-columns: 1.1fr 0.9fr;
   }
 
-  @media (min-width: 1024px) {
-    .heroLayout {
-      grid-template-columns: 1.1fr 0.9fr;
-    }
+  .section {
+    padding: clamp(3.5rem, 4vw, 4.5rem) 0;
+  }
+}
 
-    .section {
-      padding: clamp(3.5rem, 4vw, 4.5rem) 0;
-    }
+@media (prefers-reduced-motion: reduce) {
+  * {
+    scroll-behavior: auto !important;
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
   }
 
-  @media (prefers-reduced-motion: reduce) {
-    * {
-      scroll-behavior: auto !important;
-      animation-duration: 0.001ms !important;
-      transition-duration: 0.001ms !important;
-    }
-
-    .btn,
-    .skillCard,
-    .projectCard {
-      transition: none;
-    }
+  .btn,
+  .skillCard,
+  .projectCard {
+    transition: none;
   }
 }
