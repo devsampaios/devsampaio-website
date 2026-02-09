@@ -5,7 +5,7 @@
 
 ## 👨‍💻 Sobre Mim
 
-Olá! Sou **Mateus**, tenho 17 anos e atuo como **Desenvolvedor Full Stack**. Apaixonado por tecnologia e desenvolvimento web, construo aplicações completas utilizando as melhores práticas do mercado.
+Olá! Sou **Mateus**, tenho 18 anos e atuo como **Desenvolvedor Full Stack**. Apaixonado por tecnologia e desenvolvimento web, construo aplicações completas utilizando as melhores práticas do mercado.
 
 ## 🚀 Tecnologias Utilizadas
 
