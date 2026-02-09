@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState, useEffect, useRef, useCallback } from 'react';
 
 const SnakeGame = () => {
@@ -184,6 +185,7 @@ const SnakeGame = () => {
           oscillator.stop(audioContext.currentTime + 0.1);
         }
       } catch (error) {
+        console.error('Audio init error', error);
       }
     }
   };
@@ -407,124 +409,113 @@ const SnakeGame = () => {
   }, [gameOverTriggered, gameOver, score, highScore]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-white via-blue-50 to-white dark:from-zinc-900 dark:via-neutral-900 dark:to-zinc-900 flex items-center justify-center p-4">
-      <div className="bg-gradient-to-br from-blue-50/60 to-blue-100/60 dark:from-neutral-800/60 dark:to-neutral-900/60 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-blue-200/40 dark:border-neutral-700/40 shadow-2xl">
-
-        <div className="flex flex-col sm:flex-row justify-between items-center mb-6 gap-4">
-          <h1 className="text-3xl sm:text-4xl font-bold text-blue-900 dark:text-white">
-            Snake Game
-          </h1>
-          
-          <div className="flex gap-6 text-center">
-            <div>
-              <p className="text-blue-700 dark:text-yellow-100 text-sm font-medium">Score</p>
-              <p className="text-2xl font-bold text-blue-600 dark:text-yellow-400">{score.toString().padStart(2, '0')}</p>
-            </div>
-            <div>
-              <p className="text-blue-700 dark:text-yellow-100 text-sm font-medium">High Score</p>
-              <p className="text-2xl font-bold text-blue-600 dark:text-yellow-400">{highScore.toString().padStart(2, '0')}</p>
-            </div>
-          </div>
+    <main className="section soft">
+      <div className="container">
+        <div className="sectionHeader">
+          <p className="eyebrow">Games</p>
+          <h1 className="sectionTitle">Snake Game</h1>
+          <p className="sectionSubtitle">
+            Use arrows or swipe to move. Space/tap pauses or restarts. Interface adapts to any screen.
+          </p>
         </div>
 
-        <div className="relative">
-          <canvas
-            ref={canvasRef}
-            width={canvasSize}
-            height={canvasSize}
-            tabIndex={0}
-            className={`border-2 border-blue-300 dark:border-neutral-700 rounded-xl bg-blue-50 dark:bg-neutral-900 ${gameOver || isPaused ? 'blur-sm' : ''} max-w-full h-auto focus:outline-none focus:ring-2 focus:ring-blue-400 dark:focus:ring-yellow-400 touch-none`}
-            style={{ aspectRatio: '1/1' }}
-            onClick={() => canvasRef.current?.focus()}
-          />
-          
-          {gameOver && (
-            <div className="absolute inset-0 flex items-center justify-center bg-blue-900/50 dark:bg-black/50 rounded-xl">
-              <div className="bg-gradient-to-br from-white to-blue-50 dark:from-neutral-800 dark:to-neutral-900 p-8 rounded-xl border border-blue-300 dark:border-neutral-700 text-center">
-                <h2 className="text-2xl font-bold text-red-600 dark:text-red-400 mb-4">Game Over!</h2>
-                <p className="text-blue-800 dark:text-yellow-100 mb-2">Final Score: <span className="text-blue-600 dark:text-yellow-400 font-bold">{score}</span></p>
-                {score === highScore && score > 0 && (
-                  <p className="text-green-600 dark:text-green-400 text-sm mb-4">New High Score!</p>
-                )}
-                <button
-                  onClick={startGame}
-                  className="bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-neutral-900 font-semibold px-6 py-3 rounded-lg transition-all duration-300 hover:scale-105"
-                >
-                  Play Again
-                </button>
-                <p className="text-blue-600 dark:text-neutral-400 text-xs mt-2">Press Space or Tap to play again</p>
+        <div className="gameShell">
+            <div className="gameHeader">
+              <div>
+                <div className="projectTitle">About this game</div>
+                <p className="muted" style={{ marginTop: '0.25rem' }}>Collect food, avoid walls, and don’t hit yourself.</p>
               </div>
-            </div>
-          )}
-
-          {isPaused && !gameOver && (
-            <div className="absolute inset-0 flex items-center justify-center bg-blue-900/50 dark:bg-black/50 rounded-xl">
-              <div className="bg-gradient-to-br from-white to-blue-50 dark:from-neutral-800 dark:to-neutral-900 p-8 rounded-xl border border-blue-300 dark:border-neutral-700 text-center">
-                <h2 className="text-2xl font-bold text-blue-600 dark:text-yellow-400 mb-4">Paused</h2>
-                <p className="text-blue-800 dark:text-neutral-300 mb-4">Game is paused</p>
-                <button
-                  onClick={togglePause}
-                  className="bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-neutral-900 font-semibold px-6 py-3 rounded-lg transition-all duration-300 hover:scale-105"
-                >
-                  Resume
-                </button>
-                <p className="text-blue-800 dark:text-neutral-400 text-xs mt-2">Press Space or Tap to resume</p>
-              </div>
-            </div>
-          )}
-
-          {!isPlaying && !gameOver && (
-            <div className="absolute inset-0 flex items-center justify-center bg-blue-900/50 dark:bg-black/50 rounded-xl">
-              <div className="bg-gradient-to-br from-white to-blue-50 dark:from-neutral-800 dark:to-neutral-900 p-8 rounded-xl border border-blue-300 dark:border-neutral-700 text-center">
-                <h2 className="text-2xl font-bold text-blue-600 dark:text-yellow-400 mb-4">Ready to Play?</h2>
-                <p className="text-blue-800 dark:text-neutral-300 mb-6">Use arrow keys to move, Space to pause</p>
-                <button
-                  onClick={startGame}
-                  className="bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-neutral-900 font-semibold px-6 py-3 rounded-lg transition-all duration-300 hover:scale-105"
-                >
-                  Start Game
-                </button>
-              </div>
-            </div>
-          )}
-        </div>
-
-        <div className="mt-6 text-center">
-          {isPlaying && !isPaused && (
-            <p className="text-blue-700 dark:text-yellow-100 text-sm mb-4">
-              Use Arrows/swipe to move • Space/tap to pause
-            </p>
-          )}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-md mx-auto">
-            <div className="bg-blue-100/50 dark:bg-neutral-800/50 rounded-lg p-3 border border-blue-200 dark:border-neutral-700">
-              <p className="text-blue-800 dark:text-yellow-100 text-xs font-medium">Move</p>
-              <p className="text-blue-600 dark:text-neutral-400 text-xs">Arrows/Swipe</p>
-            </div>
-            <div className="bg-blue-100/50 dark:bg-neutral-800/50 rounded-lg p-3 border border-blue-200 dark:border-neutral-700">
-              <p className="text-blue-800 dark:text-yellow-100 text-xs font-medium">Pause</p>
-              <p className="text-blue-600 dark:text-neutral-400 text-xs">Space/Tap</p>
-            </div>
-            <div className="bg-blue-100/50 dark:bg-neutral-800/50 rounded-lg p-3 border border-blue-200 dark:border-neutral-700">
-              <p className="text-blue-800 dark:text-yellow-100 text-xs font-medium">Goal</p>
-              <p className="text-blue-600 dark:text-neutral-400 text-xs">Eat Food</p>
-            </div>
-            <div className="bg-blue-100/50 dark:bg-neutral-800/50 rounded-lg p-3 border border-blue-200 dark:border-neutral-700">
-              <p className="text-blue-800 dark:text-yellow-100 text-xs font-medium">Start</p>
-              <p className="text-blue-600 dark:text-neutral-400 text-xs">Space/Tap</p>
+              <div className="gameActions">
+                <button className="btn btnPrimary" onClick={startGame}>
+                {gameOver ? 'Play again' : isPlaying ? 'Restart' : 'Start'}
+              </button>
+              <button 
+                className="btn btnSecondary" 
+                onClick={togglePause} 
+                disabled={!isPlaying || gameOver}
+              >
+                {isPaused ? 'Resume' : 'Pause'}
+              </button>
             </div>
           </div>
-          
-          {isPlaying && (
-            <button
-              onClick={togglePause}
-              className="mt-4 bg-blue-200 hover:bg-blue-300 dark:bg-neutral-700 dark:hover:bg-neutral-600 text-blue-900 dark:text-yellow-100 font-medium px-4 py-2 rounded-lg transition-colors duration-200"
-            >
-              {isPaused ? 'Resume' : 'Pause'}
-            </button>
-          )}
+
+          <div className="metricGrid">
+            <div className="metricCard">
+              <div className="metricLabel">Score</div>
+              <div className="metricValue">{score.toString().padStart(2, '0')}</div>
+            </div>
+            <div className="metricCard">
+              <div className="metricLabel">High Score</div>
+              <div className="metricValue">{highScore.toString().padStart(2, '0')}</div>
+            </div>
+            <div className="metricCard">
+              <div className="metricLabel">Status</div>
+              <div className="metricValue">
+                {gameOver ? 'Game Over' : isPaused ? 'Paused' : isPlaying ? 'Playing' : 'Ready'}
+              </div>
+            </div>
+          </div>
+
+          <div className="gameViewport" style={{ aspectRatio: '1 / 1', minHeight: '320px' }}>
+            <canvas
+              ref={canvasRef}
+              width={canvasSize}
+              height={canvasSize}
+              tabIndex={0}
+              className="gameCanvas"
+              onClick={() => canvasRef.current?.focus()}
+            />
+
+            {(gameOver || isPaused || !isPlaying) && (
+              <div className="gameOverlay">
+                <div className="gameOverlayCard">
+                  {gameOver ? (
+                    <>
+                      <h2 className="projectTitle">Game Over</h2>
+                      <p className="muted">Score: <strong>{score}</strong></p>
+                      {score === highScore && score > 0 && <span className="pill success">New high score</span>}
+                      <button className="btn btnPrimary" onClick={startGame}>Play again</button>
+                      <p className="muted">Press Space or tap to restart</p>
+                    </>
+                  ) : !isPlaying ? (
+                    <>
+                      <h2 className="projectTitle">Ready to play?</h2>
+                      <p className="muted">Arrows/Swipe to move • Space/Tap to pause</p>
+                      <button className="btn btnPrimary" onClick={startGame}>Start</button>
+                    </>
+                  ) : (
+                    <>
+                      <h2 className="projectTitle">Paused</h2>
+                      <p className="muted">Tap or press Space to continue</p>
+                      <button className="btn btnSecondary" onClick={togglePause}>Resume</button>
+                    </>
+                  )}
+                </div>
+              </div>
+            )}
+          </div>
+
+          <div className="metricGrid">
+            <div className="metricCard">
+              <div className="metricLabel">Move</div>
+              <div className="metricValue">Arrows / Swipe</div>
+            </div>
+            <div className="metricCard">
+              <div className="metricLabel">Pause</div>
+              <div className="metricValue">Space / Tap</div>
+            </div>
+            <div className="metricCard">
+              <div className="metricLabel">Goal</div>
+              <div className="metricValue">Eat food</div>
+            </div>
+            <div className="metricCard">
+              <div className="metricLabel">Restart</div>
+              <div className="metricValue">Space / Tap</div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </main>
   );
 };
 

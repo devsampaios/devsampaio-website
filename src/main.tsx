@@ -1,13 +1,13 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import PanelView from './views/Panel/Panel.view'
-import { AlertProvider } from '@moreirapontocom/npmhelpers'
-import { ThemeProvider } from './contexts/ThemeContext'
-import HomeView from './views/Home/Home.view'
-import SnakeGame from './views/Snake/SnakeGame.view'
-import TicTacToeView from './views/TicTacToe/TicTacToe.view'
-import MarioRunnerView from './views/Mario/Mario.view'
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import './index.scss';
+import PanelView from './views/Panel/Panel.view';
+import { AlertProvider } from '@moreirapontocom/npmhelpers';
+import HomeView from './views/Home/Home.view';
+import SnakeGame from './views/Snake/SnakeGame.view';
+import TicTacToeView from './views/TicTacToe/TicTacToe.view';
+import MarioRunnerView from './views/Mario/Mario.view';
 
 const router = createBrowserRouter([
   {
@@ -32,15 +32,12 @@ const router = createBrowserRouter([
       },
     ],
   },
-])
-
+]);
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <ThemeProvider>
-      <AlertProvider>
-        <RouterProvider router={router} />
-      </AlertProvider>
-    </ThemeProvider>
-  </StrictMode>,
-)
+    <AlertProvider>
+      <RouterProvider router={router} />
+    </AlertProvider>
+  </StrictMode>
+);

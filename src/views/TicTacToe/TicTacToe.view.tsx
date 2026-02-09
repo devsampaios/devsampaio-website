@@ -205,163 +205,95 @@ const TicTacToeView = () => {
   }, [currentPlayer, board, gameOver, isDraw]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-white via-blue-50 to-white dark:from-zinc-900 dark:via-neutral-900 dark:to-zinc-900 flex items-center justify-center p-4">
-      <div className="bg-gradient-to-br from-blue-50/60 to-blue-100/60 dark:from-neutral-800/60 dark:to-neutral-900/60 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-blue-200/40 dark:border-neutral-700/40 shadow-2xl max-w-2xl w-full">
-        
-        <div className="text-center mb-8">
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-blue-900 dark:text-white mb-4">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-blue-700 dark:from-yellow-300 dark:to-yellow-500">
-              Tic Tac Toe
-            </span>
-          </h1>
-          
-          {!gameOver ? (
-            <div className="flex items-center justify-center gap-3">
-              {currentPlayer === 'X' ? (
-                <p className="text-blue-400 text-lg sm:text-xl font-semibold flex items-center gap-2">
-                  <i className="fas fa-user"></i>
-                  Your Turn - Click a cell!
-                </p>
-              ) : isAiThinking ? (
-                <div className="flex items-center gap-3">
-                  <i className="fas fa-cog animate-spin text-red-400"></i>
-                  <p className="text-red-400 text-lg sm:text-xl font-semibold">
-                    Computer is thinking...
-                  </p>
-                </div>
-              ) : (
-                <p className="text-red-400 text-lg sm:text-xl font-semibold flex items-center gap-2">
-                  <i className="fas fa-robot"></i>
-                  Computer's Turn
-                </p>
-              )}
-            </div>
-          ) : (
-            <div className="text-center">
-              {isDraw ? (
-                <h2 className="text-2xl font-bold text-yellow-400 mb-2 flex items-center gap-2 justify-center">
-                  <i className="fas fa-handshake"></i>
-                  It's a Draw!
-                </h2>
-              ) : (
-                <h2 className="text-2xl font-bold mb-2">
-                  <span className={`flex items-center gap-2 justify-center ${winner === 'X' ? 'text-blue-400' : 'text-red-400'}`}>
-                    {winner === 'X' ? (
-                      <>
-                        <i className="fas fa-trophy"></i>
-                        You Win!
-                        <i className="fas fa-star"></i>
-                      </>
-                    ) : (
-                      <>
-                        <i className="fas fa-robot"></i>
-                        Computer Wins!
-                        <i className="fas fa-times-circle"></i>
-                      </>
-                    )}
-                  </span>
-                </h2>
-              )}
-            </div>
-          )}
+    <main className="section soft">
+      <div className="container">
+        <div className="sectionHeader">
+          <p className="eyebrow">Games</p>
+          <h1 className="sectionTitle">Tic Tac Toe</h1>
+          <p className="sectionSubtitle">You are X, the computer is O. Win or force a draw by choosing the difficulty.</p>
         </div>
 
-        <div className="flex justify-center mb-6">
-          <div className="bg-blue-100/50 dark:bg-neutral-800/50 rounded-lg p-4 border border-blue-200/60 dark:border-neutral-700">
-            <p className="text-blue-700 dark:text-neutral-300 text-sm mb-3 text-center flex items-center gap-2 justify-center">
-              <i className="fas fa-cog"></i>
-              AI Difficulty
-            </p>
-            <div className="flex gap-2">
-              {(['easy', 'medium', 'hard'] as const).map((level) => {
-                const { text, icon } = getDifficultyLabel(level);
-                return (
-                  <button
-                    key={level}
-                    onClick={() => setDifficulty(level)}
-                    disabled={isAiThinking || (currentPlayer === 'O' && !gameOver)}
-                    className={`px-3 py-2 rounded-lg text-xs sm:text-sm font-medium transition-all duration-200 flex items-center gap-1 ${
-                      difficulty === level
-                        ? level === 'easy' 
-                          ? 'text-white bg-green-600 border border-green-500' 
-                          : level === 'medium'
-                            ? 'text-neutral-900 bg-yellow-400 border border-yellow-300'
-                            : 'text-white bg-red-600 border border-red-500'
-                        : 'text-blue-600 hover:text-blue-800 dark:text-neutral-400 dark:hover:text-neutral-200 bg-blue-50 hover:bg-blue-100 dark:bg-neutral-700 dark:hover:bg-neutral-600 border border-transparent'
-                    } ${isAiThinking || (currentPlayer === 'O' && !gameOver) ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'}`}
-                  >
-                    <i className={icon}></i>
-                    {text}
-                  </button>
-                );
-              })}
+        <div className="gameShell">
+          <div className="gameHeader">
+            <div>
+              <div className="projectTitle">AI difficulty</div>
+              <div className="badgeRow" style={{ marginTop: '0.35rem' }}>
+                {(['easy', 'medium', 'hard'] as const).map((level) => {
+                  const { text, icon } = getDifficultyLabel(level);
+                  const isActive = difficulty === level;
+                  const variant =
+                    level === 'easy' ? 'btnEasy' :
+                    level === 'medium' ? 'btnMedium' :
+                    'btnHard';
+                  return (
+                    <button
+                      key={level}
+                      onClick={() => setDifficulty(level)}
+                      disabled={isAiThinking || (currentPlayer === 'O' && !gameOver)}
+                      className={`btn btnDifficulty ${variant} ${isActive ? 'isActive' : ''}`}
+                    >
+                      <i className={icon} aria-hidden="true" />
+                      {text}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+            <div className="gameActions">
+              <button className="btn btnPrimary" onClick={resetGame}>
+                {gameOver ? 'Play again' : 'Reset round'}
+              </button>
+              <button className="btn btnGhost" onClick={resetScores}>
+                Reset scores
+              </button>
             </div>
           </div>
-        </div>
 
-        <div className="flex justify-center mb-8">
-          <div className="grid grid-cols-3 gap-2 sm:gap-4 md:gap-6 w-full max-w-sm sm:max-w-md md:max-w-lg">
-            <div className="bg-blue-500/10 rounded-lg p-2 sm:p-3 md:p-4 border border-blue-500/30 text-center">
-              <p className="text-blue-400 font-bold text-xs sm:text-sm md:text-lg flex items-center gap-1 sm:gap-2 justify-center">
-                <i className="fas fa-user text-xs sm:text-sm"></i>
-                <span className="hidden sm:inline">You</span>
-                <span className="sm:hidden">You</span>
-              </p>
-              <p className="text-blue-900 dark:text-white text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold">{scores.player}</p>
+          <div className="metricGrid">
+            <div className="metricCard">
+              <div className="metricLabel">You</div>
+              <div className="metricValue">{scores.player}</div>
             </div>
-            <div className="bg-yellow-500/10 rounded-lg p-2 sm:p-3 md:p-4 border border-yellow-500/30 text-center">
-              <p className="text-yellow-400 font-bold text-xs sm:text-sm md:text-lg flex items-center gap-1 sm:gap-2 justify-center">
-                <i className="fas fa-handshake text-xs sm:text-sm"></i>
-                <span className="hidden sm:inline">Draws</span>
-                <span className="sm:hidden">Draw</span>
-              </p>
-              <p className="text-blue-900 dark:text-white text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold">{scores.draws}</p>
+            <div className="metricCard">
+              <div className="metricLabel">Empates</div>
+              <div className="metricValue">{scores.draws}</div>
             </div>
-            <div className="bg-red-500/10 rounded-lg p-2 sm:p-3 md:p-4 border border-red-500/30 text-center">
-              <p className="text-red-400 font-bold text-xs sm:text-sm md:text-lg flex items-center gap-1 sm:gap-2 justify-center">
-                <i className="fas fa-robot text-xs sm:text-sm"></i>
-                <span className="hidden sm:inline">Computer</span>
-                <span className="sm:hidden">CPU</span>
-              </p>
-              <p className="text-blue-900 dark:text-white text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold">{scores.computer}</p>
+            <div className="metricCard">
+              <div className="metricLabel">Computador</div>
+              <div className="metricValue">{scores.computer}</div>
             </div>
           </div>
-        </div>
 
-        <div className="flex justify-center mb-8">
-          <div className="bg-blue-100/30 dark:bg-neutral-900/50 rounded-xl border-2 border-blue-300/50 dark:border-neutral-700 p-4 sm:p-6">
-            <div className="grid grid-cols-3 gap-3 sm:gap-4">
+          <div className="card" style={{ textAlign: 'center' }}>
+            {!gameOver ? (
+              <p className="muted">
+                {currentPlayer === 'X' ? 'Your turn — click a spot.' : isAiThinking ? 'Computer thinking...' : 'Computer is playing.'}
+              </p>
+            ) : (
+              <p className="muted">
+                {isDraw ? 'Draw!' : winner === 'X' ? 'You won!' : 'Computer won!'}
+              </p>
+            )}
+          </div>
+
+          <div className="card" style={{ display: 'grid', justifyItems: 'center' }}>
+            <div className="tttBoard">
               {board.map((cell, index) => {
-                let cellClasses = 'w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 rounded-lg border-2 text-2xl sm:text-3xl lg:text-4xl font-bold transition-all duration-200 transform hover:scale-105 flex items-center justify-center';
-                
-                if (cell === 'X') {
-                  cellClasses += ' bg-blue-500/20 text-blue-400 border-blue-500/50';
-                } else if (cell === 'O') {
-                  cellClasses += ' bg-red-500/20 text-red-400 border-red-500/50';
-                } else {
-                  cellClasses += ' bg-blue-50/50 dark:bg-neutral-800/50 border-blue-200 dark:border-neutral-600 hover:border-yellow-400/60 hover:bg-blue-100/50 dark:hover:bg-neutral-700/50';
-                }
-                
-                if (winningCells.includes(index)) {
-                  cellClasses += ' ring-4 ring-yellow-400/50 animate-pulse';
-                }
-                
-                if (gameOver || cell || currentPlayer !== 'X' || isAiThinking) {
-                  cellClasses += ' cursor-not-allowed';
-                } else {
-                  cellClasses += ' cursor-pointer';
-                }
-                
-                if (isAiThinking && !cell) {
-                  cellClasses += ' opacity-70';
-                }
-                
+                const isWinning = winningCells.includes(index);
+                const cellClass = [
+                  'tttCell',
+                  cell === 'X' ? 'x' : '',
+                  cell === 'O' ? 'o' : '',
+                  isWinning ? 'win' : ''
+                ].filter(Boolean).join(' ');
+
                 return (
                   <button
                     key={index}
                     onClick={() => handleCellClick(index)}
-                    disabled={gameOver || cell !== null}
-                    className={cellClasses}
+                    disabled={gameOver || cell !== null || currentPlayer !== 'X' || isAiThinking}
+                    className={cellClass}
+                    aria-label={`Cell ${index + 1}`}
                   >
                     {cell}
                   </button>
@@ -369,37 +301,28 @@ const TicTacToeView = () => {
               })}
             </div>
           </div>
-        </div>
 
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-          <button
-            onClick={resetGame}
-            className="bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-neutral-900 font-semibold px-6 py-3 rounded-lg transition-all duration-300 hover:scale-105 w-full sm:w-auto"
-          >
-            {gameOver ? 'Play Again' : 'Reset Game'}
-          </button>
-          
-          <button
-            onClick={resetScores}
-            className="bg-blue-200 hover:bg-blue-300 dark:bg-neutral-700 dark:hover:bg-neutral-600 text-blue-900 dark:text-yellow-100 font-medium px-6 py-3 rounded-lg transition-colors duration-200 w-full sm:w-auto"
-          >
-            Reset Scores
-          </button>
-        </div>
-
-        <div className="mt-8 text-center">
-          <p className="text-blue-600 dark:text-neutral-400 text-sm sm:text-base flex items-center gap-2 justify-center flex-wrap mb-2">
-            <i className="fas fa-lightbulb text-yellow-400"></i>
-            You are X, computer is O. Get 3 in a row to win!
-          </p>
-          <p className="text-blue-500 dark:text-neutral-500 text-xs sm:text-sm flex items-center gap-2 justify-center flex-wrap">
-            <i className="fas fa-info-circle"></i>
-            <span className={getDifficultyLabel(difficulty).color}>{getDifficultyLabel(difficulty).text}</span> 
-            difficulty: {difficulty === 'easy' ? '70% chance AI makes random moves' : difficulty === 'medium' ? '40% chance AI makes random moves' : 'AI plays perfectly'}
-          </p>
+          <div className="metricGrid">
+            <div className="metricCard">
+              <div className="metricLabel">You</div>
+              <div className="metricValue">X</div>
+            </div>
+            <div className="metricCard">
+              <div className="metricLabel">IA</div>
+              <div className="metricValue">O</div>
+            </div>
+            <div className="metricCard">
+              <div className="metricLabel">Goal</div>
+              <div className="metricValue">3 in line</div>
+            </div>
+            <div className="metricCard">
+              <div className="metricLabel">Controls</div>
+              <div className="metricValue">Click / Tap</div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </main>
   );
 };
 

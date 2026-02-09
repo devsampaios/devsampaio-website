@@ -154,161 +154,137 @@ const MarioRunnerView = () => {
     return () => document.removeEventListener('touchstart', handleTouch);
   }, [isPlaying, isGameOver, jump, startGame]);
 
+  const isMobile = typeof window !== 'undefined' ? window.innerWidth < 640 : false;
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-white via-blue-50 to-white dark:from-zinc-900 dark:via-neutral-900 dark:to-zinc-900 flex items-center justify-center p-4">
-      <div className="bg-gradient-to-br from-blue-50/60 to-blue-100/60 dark:from-neutral-800/60 dark:to-neutral-900/60 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-blue-200/40 dark:border-neutral-700/40 shadow-2xl max-w-4xl w-full">
-        
-        <div className="text-center mb-6">
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-blue-900 dark:text-white mb-4">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-blue-700 dark:from-yellow-300 dark:to-yellow-500">
-              Mario Runner
-            </span>
-          </h1>
-          
-          <div className="flex justify-center gap-4 sm:gap-8 mb-4">
-            <div className="text-center">
-              <p className="text-blue-700 dark:text-neutral-300 text-sm">Score</p>
-              <p className="text-yellow-600 dark:text-yellow-400 text-2xl font-bold">{score}</p>
-            </div>
-            <div className="text-center">
-              <p className="text-blue-700 dark:text-neutral-300 text-sm">Level</p>
-              <p className="text-green-600 dark:text-green-400 text-2xl font-bold">{difficultyLevel}</p>
-            </div>
-            <div className="text-center">
-              <p className="text-blue-700 dark:text-neutral-300 text-sm">High Score</p>
-              <p className="text-yellow-600 dark:text-yellow-400 text-2xl font-bold">{highScore}</p>
-            </div>
-          </div>
+    <main className="section soft">
+      <div className="container">
+        <div className="sectionHeader">
+          <p className="eyebrow">Games</p>
+          <h1 className="sectionTitle">Mario Runner</h1>
+          <p className="sectionSubtitle">Run and jump the pipes. Space or tap to jump without squeezing the mobile layout.</p>
         </div>
 
-        <div className="relative w-full h-48 sm:h-64 md:h-80 rounded-xl overflow-hidden border-2 border-blue-300 dark:border-neutral-700" style={{background: 'linear-gradient(#87CEEB, #E0F6FF)'}}>
-          
-          <div className="absolute bottom-0 left-0 right-0 h-12 sm:h-16 bg-gradient-to-b from-green-400 to-green-600"></div>
-          
-          <img 
-            src="/assets/MarioGame/clouds.png" 
-            alt="Clouds" 
-            className="absolute top-4 left-8 w-16 h-12 opacity-80"
-          />
-          <img 
-            src="/assets/MarioGame/clouds.png" 
-            alt="Clouds" 
-            className="absolute top-8 right-16 w-20 h-14 opacity-70"
-          />
-          
-          <div
-            ref={marioRef}
-            className={`absolute bottom-12 sm:bottom-16 left-12 w-16 h-16 transition-all duration-300 ${
-              isJumping ? 'transform -translate-y-36 sm:-translate-y-32' : ''
-            }`}
-          >
-            <img 
-              src={isGameOver ? '/assets/MarioGame/game-over.png' : '/assets/MarioGame/mario.gif'} 
-              alt={isGameOver ? "Game Over Mario" : "Mario"}
-              className="w-full h-full object-contain"
-            />
+        <div className="gameShell">
+            <div className="gameHeader">
+              <div>
+                <div className="projectTitle">Progress</div>
+                <p className="muted" style={{ marginTop: '0.25rem' }}>Score, level up, and keep the pace.</p>
+              </div>
+              <div className="gameActions">
+              <button className="btn btnPrimary" onClick={startGame}>
+                {isPlaying ? 'Restart' : isGameOver ? 'Play again' : 'Start'}
+              </button>
+            </div>
           </div>
 
-          <div
-            ref={pipeRef}
-            className={`absolute bottom-0 w-12 sm:w-16 h-16 sm:h-32 ${
-              isPlaying && !isGameOver ? 'animate-pipe-move' : 'right-0'
-            }`}
-            style={{
-              right: isPlaying && !isGameOver ? 'initial' : '0'
-            }}
-          >
-            <img 
-              src="/assets/MarioGame/pipe.png" 
-              alt="Pipe"
-              className="w-full h-full object-contain"
-            />
+          <div className="metricGrid">
+            <div className="metricCard">
+              <div className="metricLabel">Score</div>
+              <div className="metricValue">{score}</div>
+            </div>
+            <div className="metricCard">
+              <div className="metricLabel">Level</div>
+              <div className="metricValue">{difficultyLevel}</div>
+            </div>
+            <div className="metricCard">
+              <div className="metricLabel">High Score</div>
+              <div className="metricValue">{highScore}</div>
+            </div>
           </div>
 
-          {isGameOver && (
-            <div className="absolute inset-0 bg-blue-900/50 dark:bg-black/50 flex items-center justify-center">
-              <div className="bg-gradient-to-br from-white to-blue-50 dark:from-neutral-800 dark:to-neutral-900 p-6 rounded-xl border border-blue-300 dark:border-neutral-700 text-center">
-                <h2 className="text-2xl font-bold text-red-600 dark:text-red-400 mb-4 flex items-center gap-2 justify-center">
-                  <i className="fas fa-skull"></i>
-                  Game Over!
-                </h2>
-                <p className="text-blue-800 dark:text-yellow-100 mb-2">Final Score: <span className="text-blue-600 dark:text-yellow-400 font-bold">{score}</span></p>
-                {score === highScore && score > 0 && (
-                  <p className="text-green-600 dark:text-green-400 text-sm mb-4 flex items-center gap-2 justify-center">
-                    <i className="fas fa-trophy"></i>
-                    New High Score!
-                  </p>
-                )}
-                <button
-                  onClick={startGame}
-                  className="bg-gradient-to-r from-blue-400 to-blue-500 hover:from-blue-500 hover:to-blue-600 text-white font-semibold px-6 py-3 rounded-lg transition-all duration-300 hover:scale-105"
-                >
-                  Play Again
-                </button>
-              </div>
-            </div>
-          )}
+          <div className="runnerStage">
+            <div className="runnerGround" />
 
-          {!isPlaying && !isGameOver && (
-            <div className="absolute inset-0 bg-blue-900/30 dark:bg-black/30 flex items-center justify-center">
-              <div className="bg-gradient-to-br from-white to-blue-50 dark:from-neutral-800 dark:to-neutral-900 p-6 rounded-xl border border-blue-300 dark:border-neutral-700 text-center">
-                <h2 className="text-2xl font-bold text-blue-600 dark:text-yellow-400 mb-4 flex items-center gap-2 justify-center">
-                  <i className="fas fa-play"></i>
-                  Ready to Run?
-                </h2>
-                <p className="text-blue-800 dark:text-neutral-300 mb-6">Help Mario jump over the pipes!</p>
-                <button
-                  onClick={startGame}
-                  className="bg-gradient-to-r from-blue-400 to-blue-500 hover:from-blue-500 hover:to-blue-600 text-white font-semibold px-6 py-3 rounded-lg transition-all duration-300 hover:scale-105"
-                >
-                  Start Game
-                </button>
-              </div>
-            </div>
-          )}
-        </div>
+            <img 
+              src="/assets/MarioGame/clouds.png" 
+              alt="Clouds" 
+              className="runnerCloud" 
+              style={{ top: '10%', left: '8%', width: '72px', height: '52px' }}
+            />
+            <img 
+              src="/assets/MarioGame/clouds.png" 
+              alt="Clouds" 
+              className="runnerCloud" 
+              style={{ top: '18%', right: '12%', width: '90px', height: '62px' }}
+            />
 
-        <div className="mt-6 text-center">
-          <p className="text-blue-600 dark:text-neutral-400 text-sm sm:text-base flex items-center gap-2 justify-center flex-wrap mb-4">
-            <i className="fas fa-lightbulb text-yellow-500 dark:text-yellow-400"></i>
-            Press SPACE or tap to jump over pipes!
-            <i className="fas fa-running text-green-600 dark:text-green-400"></i>
-          </p>
-          
-          <div className="grid grid-cols-2 gap-4 max-w-md mx-auto">
-            <div className="bg-blue-100/50 dark:bg-neutral-800/50 rounded-lg p-3 border border-blue-200 dark:border-neutral-700">
-              <p className="text-blue-800 dark:text-yellow-100 text-xs font-medium flex items-center gap-2 justify-center">
-                <i className="fas fa-keyboard"></i>
-                Desktop
-              </p>
-              <p className="text-blue-600 dark:text-neutral-400 text-xs">Space to Jump</p>
+            <div
+              ref={marioRef}
+              className="runnerCharacter"
+              style={{
+                transform: isJumping ? 'translateY(-40%)' : 'translateY(0)',
+                width: isMobile ? '56px' : '72px',
+                height: isMobile ? '56px' : '72px'
+              }}
+            >
+              <img 
+                src={isGameOver ? '/assets/MarioGame/game-over.png' : '/assets/MarioGame/mario.gif'} 
+                alt={isGameOver ? "Game Over Mario" : "Mario"}
+                style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+              />
             </div>
-            <div className="bg-blue-100/50 dark:bg-neutral-800/50 rounded-lg p-3 border border-blue-200 dark:border-neutral-700">
-              <p className="text-blue-800 dark:text-yellow-100 text-xs font-medium flex items-center gap-2 justify-center">
-                <i className="fas fa-mobile-alt"></i>
-                Mobile
-              </p>
-              <p className="text-blue-600 dark:text-neutral-400 text-xs">Tap to Jump</p>
+
+            <div
+              ref={pipeRef}
+              className="runnerPipe"
+              style={{
+                right: isPlaying && !isGameOver ? 'initial' : '0',
+                animation: isPlaying && !isGameOver ? `pipe-move ${gameSpeed}s linear infinite` : 'none',
+                width: isMobile ? '48px' : '64px',
+                height: isMobile ? '70px' : '120px'
+              }}
+            >
+              <img 
+                src="/assets/MarioGame/pipe.png" 
+                alt="Pipe"
+                style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+              />
+            </div>
+
+            {(isGameOver || (!isPlaying && !isGameOver)) && (
+              <div className="gameOverlay">
+                <div className="gameOverlayCard">
+                  {isGameOver ? (
+                    <>
+                      <h2 className="projectTitle">Game Over</h2>
+                      <p className="muted">Score: <strong>{score}</strong></p>
+                      {score === highScore && score > 0 && <span className="pill success">New high score!</span>}
+                      <button className="btn btnPrimary" onClick={startGame}>Play again</button>
+                    </>
+                  ) : (
+                    <>
+                      <h2 className="projectTitle">Ready to run?</h2>
+                      <p className="muted">Press Space or tap to jump over pipes.</p>
+                      <button className="btn btnPrimary" onClick={startGame}>Start</button>
+                    </>
+                  )}
+                </div>
+              </div>
+            )}
+          </div>
+
+          <div className="metricGrid">
+            <div className="metricCard">
+              <div className="metricLabel">Desktop</div>
+              <div className="metricValue">Space to jump</div>
+            </div>
+            <div className="metricCard">
+              <div className="metricLabel">Mobile</div>
+              <div className="metricValue">Tap to jump</div>
+            </div>
+            <div className="metricCard">
+              <div className="metricLabel">Objective</div>
+              <div className="metricValue">Avoid the pipes</div>
+            </div>
+            <div className="metricCard">
+              <div className="metricLabel">Tip</div>
+              <div className="metricValue">Short jumps with timing</div>
             </div>
           </div>
         </div>
       </div>
-
-      <style>{`
-        @keyframes pipe-move {
-          from {
-            transform: translateX(calc(100vw + 100px));
-          }
-          to {
-            transform: translateX(-200px);
-          }
-        }
-        
-        .animate-pipe-move {
-          animation: pipe-move ${gameSpeed}s linear infinite;
-        }
-      `}</style>
-    </div>
+    </main>
   );
 };
 
